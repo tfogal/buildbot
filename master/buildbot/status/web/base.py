@@ -180,6 +180,13 @@ class ContextMixin(object):
     def getTitle(self, request):
         return self.title
 
+    def getAuthz(self, request):
+        return request.site.buildbot_service.authz
+
+    def getBuildmaster(self, request):
+        return request.site.buildbot_service.master
+
+
 class HtmlResource(resource.Resource, ContextMixin):
     # this is a cheap sort of template thingy
     contentType = "text/html; charset=utf-8"
@@ -235,12 +242,6 @@ class HtmlResource(resource.Resource, ContextMixin):
             request.setHeader("content-length", len(data))
             return ''
         return data
-
-    def getAuthz(self, request):
-        return request.site.buildbot_service.authz
-
-    def getBuildmaster(self, request):
-        return request.site.buildbot_service.master
 
 
 class StaticHTML(HtmlResource):
