@@ -332,3 +332,29 @@ class VC8(VisualStudio):
 
 #alias VC8 as VS2005
 VS2005 = VC8
+
+class VCExpress9(VC8):
+    def start(self):
+        command = ["vcexpress"]
+        command.append(self.projectfile)
+        if self.mode == "rebuild":
+            command.append("/Rebuild")
+        else:
+            command.append("/Build")
+        command.append(self.config)
+        if self.useenv:
+            command.append("/UseEnv")
+        self.setCommand(command)
+        return VisualStudio.start(self)
+
+# Add first support for VC9 (Same as VC8, with a different installdir)
+class VC9(VC8):
+    default_installdir = 'C:\\Program Files\\Microsoft Visual Studio 9.0'
+
+VS2008 = VC9
+
+class VCExpress10(VCExpress9):
+    default_installdir = 'C:\\Program Files\\Microsoft Visual Studio 10.0'
+
+VS2010 = VCExpress10
+VS10 = VCExpress10
