@@ -41,7 +41,7 @@ from buildbot.status.builder import FAILURE, SUCCESS, Results
 
 VALID_EMAIL = re.compile("[a-zA-Z0-9\.\_\%\-\+]+@[a-zA-Z0-9\.\_\%\-]+.[a-zA-Z]{2,6}")
 
-ENCODING = 'utf8'
+ENCODING = 'iso-8859-1'
 
 class Domain(util.ComparableMixin):
     implements(interfaces.IEmailLookup)
