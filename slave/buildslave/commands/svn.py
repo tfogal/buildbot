@@ -138,6 +138,7 @@ class SVN(SourceBaseCommand):
         result_xml = parseString(stdout)
         for entry in result_xml.getElementsByTagName('entry'):
             (wc_status,) = entry.getElementsByTagName('wc-status')
+            log.msg("item attr: %s" % wc_status.getAttribute('item'))
             if wc_status.getAttribute('item') == 'external':
                 continue
             if wc_status.getAttribute('item') == 'missing':
