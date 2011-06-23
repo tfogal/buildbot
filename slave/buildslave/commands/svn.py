@@ -112,7 +112,7 @@ class SVN(SourceBaseCommand):
             return self.exported_rev
 
         def exportCmd(res):
-            args = ['--revision', str(res), self.svnurl, self.srcdir]
+            args = ['--revision', str(res), '--force', self.svnurl, self.srcdir]
             return self._dovccmd('export', args, rootdir=self.builder.basedir)
 
         svn_info_d = self._dovccmd('info', (self.svnurl,), rootdir=self.builder.basedir, keepStdout=True)
