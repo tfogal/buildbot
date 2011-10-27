@@ -186,7 +186,8 @@ class SVNPoller(base.PollingChangeSource, util.ComparableMixin):
         return d
 
     def get_prefix(self):
-        args = ["info", "--xml", "--non-interactive", self.svnurl]
+        args = ["info", "--xml", "--non-interactive", "--trust-server-cert",
+                self.svnurl]
         if self.svnuser:
             args.extend(["--username=%s" % self.svnuser])
         if self.svnpasswd:
@@ -224,7 +225,8 @@ class SVNPoller(base.PollingChangeSource, util.ComparableMixin):
 
     def get_logs(self, _):
         args = []
-        args.extend(["log", "--xml", "--verbose", "--non-interactive"])
+        args.extend(["log", "--xml", "--verbose", "--non-interactive",
+                     "--trust-server-cert"])
         if self.svnuser:
             args.extend(["--username=%s" % self.svnuser])
         if self.svnpasswd:
